@@ -17,47 +17,47 @@ function Cameras() {
 
   useEffect(() => {
     fetchCameras();
-    // if (videoRef.current && Hls.isSupported()) {
-    //   // Clean up any previous instance
-    //   if (hlsInstance) {
-    //     hlsInstance.destroy();
-    //   }
+    if (videoRef.current && Hls.isSupported()) {
+      // Clean up any previous instance
+      if (hlsInstance) {
+        hlsInstance.destroy();
+      }
 
-    //   const hlsConfig = {
-    //     maxBufferLength: 0.5, // 3 seconds of buffer
-    //     maxMaxBufferLength: 3, // Cap at 3 seconds
-    //   };
+      const hlsConfig = {
+        maxBufferLength: 0.5, // 3 seconds of buffer
+        maxMaxBufferLength: 3, // Cap at 3 seconds
+      };
 
-    //   const hls = new Hls(hlsConfig);
-    //   // Example: http://localhost:8000/hls/camera_<camera_id>/index.m3u8
-    //   const streamUrl =
-    //     'http://localhost:8000/hls/camera_6c21fe65-4324-4cf6-99bd-68a875ad298d/index.m3u8';
+      const hls = new Hls(hlsConfig);
+      // Example: http://localhost:8000/hls/camera_<camera_id>/index.m3u8
+      const streamUrl =
+        'http://localhost:8000/hls/camera_d11c139d-4a4e-4d69-b9b6-9a5e503b8b7b/index.m3u8';
 
-    //   hls.loadSource(streamUrl);
-    //   hls.attachMedia(videoRef.current);
-    //   hls.on(Hls.Events.MANIFEST_PARSED, () => {
-    //     // Attempt to autoplay once the manifest is loaded
-    //     videoRef.current.play().catch((err) => {
-    //       console.warn('Autoplay was prevented:', err);
-    //     });
-    //   });
+      hls.loadSource(streamUrl);
+      hls.attachMedia(videoRef.current);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        // Attempt to autoplay once the manifest is loaded
+        videoRef.current.play().catch((err) => {
+          console.warn('Autoplay was prevented:', err);
+        });
+      });
 
-    //   setHlsInstance(hls);
-    // } else if (
-    //   videoRef.current &&
-    //   videoRef.current.canPlayType('application/vnd.apple.mpegurl')
-    // ) {
-    //   // Some iOS Safari browsers support HLS without hls.js
-    //   videoRef.current.src =
-    //     'http://localhost:8000/hls/camera_6c21fe65-4324-4cf6-99bd-68a875ad298d/index.m3u8';
-    // }
+      setHlsInstance(hls);
+    } else if (
+      videoRef.current &&
+      videoRef.current.canPlayType('application/vnd.apple.mpegurl')
+    ) {
+      // Some iOS Safari browsers support HLS without hls.js
+      videoRef.current.src =
+        'http://localhost:8000/hls/camera_6c21fe65-4324-4cf6-99bd-68a875ad298d/index.m3u8';
+    }
 
-    // // Cleanup when the component unmounts or camera changes
-    // return () => {
-    //   if (hlsInstance) {
-    //     hlsInstance.destroy();
-    //   }
-    // };
+    // Cleanup when the component unmounts or camera changes
+    return () => {
+      if (hlsInstance) {
+        hlsInstance.destroy();
+      }
+    };
   }, []);
 
   const fetchCameras = async () => {

@@ -8,6 +8,7 @@ from app.utils.logger import log_info
 from app.db.models import Camera as CameraDB, Alert as AlertDB, Face as FaceDB
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from app.routes import alerts_ws
 
 import os
 
@@ -48,6 +49,7 @@ app.include_router(misc.router, prefix="/misc", tags=["Misc"])
 app.include_router(streams.router, prefix="/streams", tags=["Streams"])
 app.include_router(face_detection.router, prefix="/face-detection", tags=["FaceDetection"])
 app.include_router(detection.router, prefix="/detection", tags=["Detection"])
+app.include_router(alerts_ws.router, prefix="", tags=["AlertsWS"])
 
 @app.get("/health", tags=["Health"])
 def health_check():
