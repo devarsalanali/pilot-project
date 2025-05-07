@@ -44,10 +44,13 @@ const Sidebar = () => {
                 location.pathname === '/' ? 'bg-[#E5E2FAD4]' : ''
               } items-center hover:bg-[#E5E2FAD4] h-14 cursor-pointer justify-end mt-3`}
             >
-              <Link to="/" className="flex gap-1 w-10/12 items-center">
+              <Link
+                to="/dashboard/streams"
+                className="flex gap-1 w-10/12 items-center"
+              >
                 <p
                   className={`${
-                    location.pathname === '/'
+                    location.pathname === '/dashboard/streams'
                       ? 'text-gray-800'
                       : 'text-gray-500'
                   }`}
@@ -69,7 +72,7 @@ const Sidebar = () => {
 
                 <p
                   className={`${
-                    location.pathname === '/'
+                    location.pathname === '/dashboard/streams'
                       ? 'text-gray-800'
                       : 'text-gray-500'
                   } text-sm font-semibold`}

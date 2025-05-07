@@ -8,6 +8,7 @@ import {
 import Login from './pages/auth/Login';
 import Navbar from './components/dashboard/Navbar';
 import Sidebar from './components/dashboard/Sidebar';
+import Streams from './pages/dashboard/stream/Streams';
 import Alerts from './pages/dashboard/breach/Alerts';
 import Faces from './pages/dashboard/face/Faces';
 import Cameras from './pages/dashboard/camera/Cameras';
@@ -37,6 +38,7 @@ export default function AppRouter() {
         <Route path="/" element={<Login />} />
 
         <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="streams" element={<Streams />} />
           <Route path="breach/alerts" element={<Alerts />} />
           <Route path="cameras" element={<Cameras />} />
           <Route path="faces" element={<Faces />} />
